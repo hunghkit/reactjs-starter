@@ -1,0 +1,38 @@
+.mini-progress-themes-components {
+  width: 100%;
+  padding: 5px 0;
+  position: relative;
+
+  .progressWrap {
+    background-color: $gray;
+    position: relative;
+  }
+
+  .progress {
+    width: 0;
+    height: 100%;
+    border-radius: 1px 0 0 1px;
+    background-color: $primary;
+    transition: all 0.4s cubic-bezier(0.08, 0.82, 0.17, 1) 0s;
+  }
+
+  .target {
+    top: 0;
+    bottom: 0;
+    position: absolute;
+
+    span {
+      top: 0;
+      left: 0;
+      width: 2px;
+      height: 4px;
+      position: absolute;
+      border-radius: 100px;
+
+      &:last-child {
+        top: auto;
+        bottom: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+.flexbox {
+  @include flexbox;
+}
+
+.flexbox-row {
+  @include flex-direction(row);
+}
+
+.flexbox-row-reverse {
+  @include flex-direction(row-reverse);
+}
+
+.flexbox-column {
+  @include flex-direction(column);
+}
+.flexbox-column-reverse {
+  @include flex-direction(column-reverse);
+}
+
+.justify-content-center {
+  @include justify-content(center);
+}
+
+.justify-content-end {
+  @include justify-content(flex-end);
+}
+
+.align-items-center {
+  @include align-items(center);
+}
+
+.align-items-end {
+  @include align-items(flex-end);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.flex-wrap {
+  @include flex-wrap(wrap);
+}

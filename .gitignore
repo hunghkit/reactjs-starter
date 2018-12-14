@@ -1,0 +1,24 @@
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+
+# testing
+/coverage
+/build/*
+/uploads/*
+
+# misc
+.DS_Store
+.env
+.env.local
+.env.development
+.env.development.local
+.env.test.local
+.env.production
+.env.production.local
+.next/*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+server/libs/datas/hubstate.json

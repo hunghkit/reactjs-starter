@@ -1,0 +1,42 @@
+.admin-components {
+  &.ant-layout {
+    min-height: 100vh;
+  }
+
+  .admin-logo {
+    margin: 11px 16px 12px;
+    background: rgba(255,255,255,.2);
+
+    a {
+      padding: 10px;
+      display: block;
+      color: $white;
+      text-align: center;
+      font-weight: bold;
+      text-decoration: none;
+    }
+  }
+
+  .ant-layout-header {
+    padding: 0 20px;
+  }
+
+  .ant-layout-content {
+    margin: 16px;
+    padding: 16px;
+
+    > div:not(.transparent) {
+      padding: 16px;
+      background-color: $white;
+    }
+
+    .title-page {
+      margin: 0;
+      padding-right: 10px;
+    }
+
+    .box-header {
+      margin-bottom: 30px;
+    }
+  }
+}

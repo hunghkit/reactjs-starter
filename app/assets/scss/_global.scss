@@ -1,0 +1,15 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.app-components {
+  width: 80%;
+  margin: auto;
+  padding: 16px;
+  max-width: 1000px;
+
+  &.ant-layout {
+    background-color: transparent;
+  }
+}

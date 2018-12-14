@@ -1,0 +1,38 @@
+.trend-themes-components {
+  line-height: 22px;
+  display: inline-block;
+
+  .up,
+  .down {
+    margin-left: 4px;
+    position: relative;
+    top: 1px;
+
+    i {
+      font-size: 12px;
+      transform: scale(0.83);
+    }
+  }
+
+  .up {
+    color: green;
+  }
+
+  .down {
+    top: -1px;
+    color: red;
+  }
+
+  &.trendItemGrey .up,
+  &.trendItemGrey .down {
+    color: $primary;
+  }
+
+  &.reverseColor .up {
+    color: green;
+  }
+
+  &.reverseColor .down {
+    color: red;
+  }
+}

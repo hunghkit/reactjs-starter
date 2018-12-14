@@ -1,0 +1,28 @@
+{
+  "presets": [
+    "next/babel",
+    "@babel/preset-env",
+    "@babel/preset-react"
+  ],
+  "plugins": [
+    "transform-class-properties",
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    [
+      "module-resolver",
+      {
+        "root": ["./"],
+        "alias": {
+          "data": "./app/data",
+          "sagas": "./app/sagas",
+          "utils": "./app/utils",
+          "assets": "./app/assets",
+          "helpers": "./app/helpers",
+          "actions": "./app/actions",
+          "reducers": "./app/reducers",
+          "selectors": "./app/selectors",
+          "components": "./app/components"
+        }
+      }
+    ],
+  ]
+}

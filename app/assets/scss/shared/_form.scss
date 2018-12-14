@@ -1,0 +1,25 @@
+.form-shared {
+  .ant-card {
+    margin-bottom: 10px;
+  }
+
+  .ant-card-body {
+    .ant-form-item {
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .ant-form-item-label {
+    line-height: 1;
+
+    label::after {
+      content: initial;
+    }
+  }
+
+  .ant-form-item-children {
+    display: block;
+  }
+}
