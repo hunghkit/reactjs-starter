@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
+    "start:dev": "next",
     "build": "next build",
     "dev": "nodemon server",
-    "start:dev": "next start",
     "start": "NODE_ENV=production node server",
     "eslint": "say 'checking eslint' && eslint --ignore-path .gitignore app/**/*.js pages/**/*.js server/**/*.js && say 'eslint clean'"
   },

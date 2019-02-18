@@ -1,15 +1,21 @@
 body {
   margin: 0;
   padding: 0;
+  overflow-y: scroll !important;
 }
 
 .app-components {
-  width: 80%;
   margin: auto;
-  padding: 16px;
-  max-width: 1000px;
+  background-color: #fafafa !important;
 
   &.ant-layout {
+    box-sizing: content-box;
+    -webkit-box-sizing: content-box;
     background-color: transparent;
+
+    * {
+      -webkit-box-sizing: content-box;
+      box-sizing: content-box;
+    }
   }
 }

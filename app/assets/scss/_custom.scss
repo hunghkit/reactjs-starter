@@ -1,0 +1,62 @@
+body {
+  h1, h2, h3, h4, h5, h6, .block1 p, .prev-post-title, .next-post-title {
+    font-family: Lora, "Helvetica Neue", Arial, Helvetica, Verdana, sans-serif;
+  }
+
+  h2, .term-description p {
+    color: #333;
+    font-size: 40px;
+  }
+
+  a, select, input, textarea, button {
+    color: $black;
+  }
+
+  .lavander-read-more a {
+    background: #a3b5a7;
+  }
+
+  .top-wrapper {
+    color: $black;
+    background: #f4f4f4;
+
+    i, a, div, input {
+      color: $black !important;
+    }
+
+    .widget_search form input#s {
+      & + i {
+        color: $black !important;
+      }
+    }
+  }
+
+  .pagenav {
+    background: #f4f4f4;
+    border-top: 0px solid #000;
+    border-bottom: 0px solid #000;
+
+    a {
+      font-family: Karla !important;
+      font-size: 14px;
+      font-weight: normal;
+      color: #333333;
+    }
+
+    li.current-menu-item a {
+      color: #a3b5a7 !important;
+    }
+  }
+
+  .blogpostcategory, .content .blogpost, .postcontent.singledefult .share-post, .commentlist, .postcontent.singlepage, .content.singlepage, .block2_img, .block2_text, .sidebar .widget, .relatedPosts, #commentform, .sidebars-wrap .widget {
+    background: $white;
+  }
+
+  .widget img {
+    // max-width: 100%;
+  }
+
+  .blogpostcategory {
+    padding-bottom: 50px;
+  }
+}

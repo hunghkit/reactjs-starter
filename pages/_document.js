@@ -11,10 +11,12 @@ class AppDocument extends Document {
     return (
       <html>
         <Head>
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/antd/3.11.2/antd.min.css" />
           <script src="https://cdn.ckeditor.com/4.10.0/full/ckeditor.js"></script>
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/antd/3.11.2/antd.min.css" />
+          <link rel='stylesheet' id='ot-google-fonts-css'  href='//fonts.googleapis.com/css?family=Lora:regular,italic,700%7CKarla:regular,italic,700%7COswald:regular,500,700' type='text/css' media='all' />
+          <link rel='stylesheet' id='sb_instagram_icons-css'  href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css?ver=4.6.3' type='text/css' media='all' />
         </Head>
-        <body>
+        <body className="blog">
           <Main />
           <NextScript />
         </body>

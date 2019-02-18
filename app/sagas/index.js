@@ -1,7 +1,8 @@
 import { takeLatest } from 'redux-saga/effects'
-import { LOGIN, ADMINCATEGORY, ADMINPOST } from 'actions/constants';
+import { LOGIN, ADMINCATEGORY, ADMINPOST, APPPOST } from 'actions/constants';
 
 import * as LOGINWATCHER from './login';
+import * as APPPOSTWATCHER from './post';
 import * as ADMINPOSTWATCHER from './adminPost';
 import * as ADMINCATEGORYWATCHER from './adminCategory';
 
@@ -9,6 +10,8 @@ export default function* root() {
   yield takeLatest(LOGIN.REFRESH_REQUEST, LOGINWATCHER.onRefreshRequest);
   yield takeLatest(LOGIN.SUBMITING_REQUEST, LOGINWATCHER.onSubmitRequest);
   yield takeLatest(LOGIN.LOGOUT_REQUEST, LOGINWATCHER.onLogoutRequest);
+
+  yield takeLatest(APPPOST.APP_POST_SEARCH_REQUEST, APPPOSTWATCHER.onSearchRequest);
 
   yield takeLatest(ADMINPOST.ADMIN_POST_SEARCH_REQUEST, ADMINPOSTWATCHER.onSearchRequest);
   yield takeLatest(ADMINPOST.ADMIN_POST_CREATE_REQUEST, ADMINPOSTWATCHER.onCreateRequest);

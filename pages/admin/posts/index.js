@@ -12,7 +12,6 @@ import { createStructuredSelector } from 'reselect';
 import { onSearchRequest, onDeleteRequest } from 'actions/adminPost';
 import * as PostSelector from 'selectors/admin/post';
 
-
 class PostAdmin extends Component {
   columns = [{
     width: 82,

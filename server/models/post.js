@@ -55,7 +55,7 @@ export default (sequelize, DataTypes) => {
 
   Post.associate = (models) => {
     Post.belongsTo(models.User, { foreignKey: 'authorId', as: 'author' });
-    // Post.belongsTo(models.Category, { foreignKey: 'categoryId', as: 'category' });
+    Post.belongsTo(models.Category, { foreignKey: 'categoryId', as: 'category' });
   };
 
   SequelizeSlugify.slugifyModel(Post, {
@@ -66,7 +66,7 @@ export default (sequelize, DataTypes) => {
     return publicFields.reduce((obj, key) => Object.assign(obj, { [key]: this[key] }), { ...extra });
   };
 
-  Post.getAll = (args, queryWhere = {}) => new Promise(async (resolve, reject) => {
+  Post.getAll = (args, queryWhere = {}, extra = {}) => new Promise(async (resolve, reject) => {
     try {
       const { limit = 10, page = 1 } = args || {};
       const query = { limit: Math.abs(parseInt(limit, 10) || 10) };
@@ -81,12 +81,25 @@ export default (sequelize, DataTypes) => {
         attributes: ['uuid', 'firstName', 'lastName'],
       }];
 
+      if (extra.include) {
+        query.include = [...query.include, ...extra.include];
+      }
+
       const posts = await Post.findAndCountAll(query);
       resolve({
         ...posts,
         currentPage,
         totalPage: Math.ceil(posts.count / query.limit),
       });
+    } catch (e) {
+      reject(e);
+    }
+  });
+
+  Post.getData = (uuid) => new Promise(async (resolve, reject) => {
+    try {
+      const post = await Post.findOne({ where: { uuid } });
+      resolve(post.toJson());
     } catch (e) {
       reject(e);
     }

@@ -3,8 +3,10 @@ import authenticate, { injectUserToReq } from '@server/helpers/auth';
 import Auth from './auth';
 import User from './user';
 import Image from './image';
-import Post from './post';
+import AdminPost from './admin/post';
 import Category from './category';
+
+import Post from './post';
 
 const multer  = require('multer');
 
@@ -18,13 +20,16 @@ export default (app) => {
   unauthenticateRouter.post('/auth/signin', Auth.signin);
   unauthenticateRouter.post('/auth/signup', Auth.signup);
 
+  unauthenticateRouter.get('/posts', Post.index);
+  unauthenticateRouter.get('/posts/:uuid', Post.show);
+
   authenticateRouter.get('/users', User.index);
   authenticateRouter.put('/users/:uuid', User.update);
 
-  authenticateRouter.get('/admin/posts', Post.index);
-  authenticateRouter.post('/admin/posts', Post.create);
-  authenticateRouter.put('/admin/posts/:uuid', Post.update);
-  authenticateRouter.delete('/admin/posts/:uuid', Post.destroy);
+  authenticateRouter.get('/admin/posts', AdminPost.index);
+  authenticateRouter.post('/admin/posts', AdminPost.create);
+  authenticateRouter.put('/admin/posts/:uuid', AdminPost.update);
+  authenticateRouter.delete('/admin/posts/:uuid', AdminPost.destroy);
 
   authenticateRouter.get('/admin/categories', Category.index);
   authenticateRouter.post('/admin/categories', Category.create);

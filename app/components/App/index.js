@@ -1,14 +1,24 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Layout } from 'antd';
+import Header from './Header';
+import Sidebar from './Sidebar';
 
 class AppLayout extends Component {
   render() {
     return (
       <Layout
-        className="app-components"
+        className="app-components blog"
       >
-        {this.props.children}
+        <Header />
+        <div className="mainwrap blog home sidebar default">
+          <div className="main clearfix">
+            <div className="content blog">
+              {this.props.children}
+            </div>
+            <Sidebar />
+          </div>
+        </div>
       </Layout>
     );
   }

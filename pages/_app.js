@@ -1,6 +1,5 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import NoSSR from 'react-no-ssr';
 import App, { Container } from 'next/app';
 import Router from 'next/router';
 import withRedux from 'next-redux-wrapper';
@@ -31,11 +30,9 @@ class Page extends App {
 
     return (
       <Container>
-        <NoSSR>
-          <Provider store={store}>
-            <Component {...pageProps} />
-          </Provider>
-        </NoSSR>
+        <Provider store={store}>
+          <Component {...pageProps} />
+        </Provider>
       </Container>
     );
   }
