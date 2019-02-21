@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "start:dev": "next",
     "build": "next build",
     "dev": "nodemon server",
+    "be": "PORT=3005 BE=true nodemon server",
     "start": "NODE_ENV=production node server",
+    "start:dev": "API_URL=http://localhost:3005 next",
     "eslint": "say 'checking eslint' && eslint --ignore-path .gitignore app/**/*.js pages/**/*.js server/**/*.js && say 'eslint clean'"
   },
   "pre-commit": "eslint",
@@ -45,6 +46,7 @@
     "multer": "1.4.1",
     "next": "7.0.2",
     "next-redux-wrapper": "2.1.0",
+    "next-routes": "^1.4.2",
     "numeral": "^2.0.6",
     "pg": "7.7.1",
     "prop-types": "15.6.2",

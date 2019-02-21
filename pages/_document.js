@@ -3,8 +3,7 @@ import Document, { Head, Main, NextScript } from 'next/document';
 
 class AppDocument extends Document {
   static async getInitialProps(ctx) {
-    const initialProps = await Document.getInitialProps(ctx)
-    return { ...initialProps }
+    return await Document.getInitialProps(ctx);
   }
 
   render() {

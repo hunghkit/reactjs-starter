@@ -15,7 +15,10 @@ export const getCurrentPage = () => createSelector(reducerPost, state => state.g
 
 export const getPageSize = () => createSelector(reducerPost, state => state.get('pageSize') || 10);
 
+export const getPost = () => createSelector(reducerPost, state => (state.getIn(['all', state.get('detail')]) || fromJS({})).toJS());
+
 export default {
+  getPost,
   getPosts,
   getCount,
   getLoaded,

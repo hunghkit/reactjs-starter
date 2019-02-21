@@ -4,6 +4,7 @@ export const ON_CHANGE_OPEN_KEYS = `${PREFIX_NAME}_ON_CHANGE_OPEN_KEYS`;
 
 export const APP = {
   ...PREFIX_CONST_REQUEST('ROUTER'),
+  ...PREFIX_CONST_REQUEST('SYSTEM_CONFIG'),
 };
 
 export const LOGIN = {
@@ -13,6 +14,7 @@ export const LOGIN = {
 };
 
 export const APPPOST = {
+  ...PREFIX_CONST_REQUEST('APP_POST_DETAIL'),
   ...PREFIX_CONST_REQUEST('APP_POST_SEARCH'),
   ...PREFIX_CONST_REQUEST('APP_POST_FETCHING'),
 };

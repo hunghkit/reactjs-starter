@@ -4,12 +4,16 @@ import App, { Container } from 'next/app';
 import Router from 'next/router';
 import withRedux from 'next-redux-wrapper';
 import { initStore } from 'reducers/store';
+import axios from 'axios';
 import {
   onRouterRequest,
   onRouterSuccess,
+  onConfigRequest,
 } from 'actions/app';
 import { onRefreshRequest } from 'actions/login';
 import 'assets/scss/application.scss';
+
+axios.defaults.baseURL = `${process.env.API_URL || ''}/api/v1.0.0`;
 
 class Page extends App {
   constructor(props) {
@@ -20,9 +24,18 @@ class Page extends App {
   }
 
   static async getInitialProps({ Component, ctx }) {
-    return {
-      pageProps: (Component.getInitialProps ? await Component.getInitialProps(ctx) : {}),
-    };
+    let pageProps = {};
+
+    if (Component.getInitialProps) {
+      await new Promise((resolve) => ctx.store.dispatch(onConfigRequest(() => resolve(true))));
+      pageProps = await Component.getInitialProps(ctx);
+    }
+
+    return { pageProps };
+  }
+
+  componentDidMount() {
+    this.props.store.dispatch(onConfigRequest());
   }
 
   render() {

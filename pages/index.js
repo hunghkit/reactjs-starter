@@ -11,6 +11,16 @@ import { onSearchRequest } from 'actions/post';
 import * as PostSelector from 'selectors/post';
 
 class Page extends Component {
+  static getInitialProps (ctx) {
+    return new Promise((resolve) => {
+      if (ctx && ctx.store) {
+        ctx.store.dispatch(onSearchRequest({}, () => resolve({})));
+      } else {
+        resolve({});
+      }
+    });
+  }
+
   componentDidMount() {
     this.props.onLoad(this.props.router.query);
   }
@@ -28,7 +38,7 @@ class Page extends Component {
     return (
       <div
         key={post.uuid}
-        className="blogpostcategory"
+        className="page blogpostcategory"
       >
         <div className="topBlog">
           <div className="blog-category">
@@ -39,20 +49,20 @@ class Page extends Component {
             </em>
           </div>
           <h2 className="title">
-            <Link href={`/post/${slug || ''}`}>
-              <a rel="bookmark" title="Permanent" link="" to="" exploring="" my="" surroundings="">{title}</a>
+            <Link as={`/post/${slug || ''}`} href={`/post/detail?slug=${slug}`}>
+              <a>{title}</a>
             </Link>
           </h2>
         </div>
-        <Link href={`/post/${slug || ''}`}>
+        <Link as={`/post/${slug || ''}`} href={`/post/detail?slug=${slug}`}>
           <a className="overdefultlink">
             <div className="overdefult"></div>
           </a>
         </Link>
         <div className="blogimage">
           <div className="loading"></div>
-          <Link href={`/post/${slug || ''}`}>
-            <a rel="bookmark" title="Permanent" link="" to="" exploring="" my="" surroundings="">
+          <Link as={`/post/${slug || ''}`} href={`/post/detail?slug=${slug}`}>
+            <a>
               <img width="1160" height="748" src={imageURL} className="attachment-lavander-postBlock size-lavander-postBlock wp-post-image" alt={title || ''} />
             </a>
           </Link>
@@ -107,7 +117,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onLoad: (params) => dispatch(onSearchRequest(params)),
+  onLoad: (params, cb) => dispatch(onSearchRequest(params, cb)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Page));

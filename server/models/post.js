@@ -63,7 +63,7 @@ export default (sequelize, DataTypes) => {
   });
 
   Post.prototype.toJson = function (extra = {}) {
-    return publicFields.reduce((obj, key) => Object.assign(obj, { [key]: this[key] }), { ...extra });
+    return [...publicFields, 'author', 'category'].reduce((obj, key) => [undefined].includes(this[key]) ? obj : Object.assign(obj, { [key]: this[key] }), { ...extra });
   };
 
   Post.getAll = (args, queryWhere = {}, extra = {}) => new Promise(async (resolve, reject) => {
@@ -73,7 +73,7 @@ export default (sequelize, DataTypes) => {
       const currentPage = Math.abs((parseInt(page, 10) || 1) - 1);
       query.offset = query.limit * currentPage;
       query.where = queryWhere;
-      query.attributes = publicFields;
+      query.attributes = publicFields.filter((item) => item !== 'content');
       query.order = [['createdAt', 'desc']];
       query.include = [{
         as: 'author',
@@ -96,14 +96,24 @@ export default (sequelize, DataTypes) => {
     }
   });
 
-  Post.getData = (uuid) => new Promise(async (resolve, reject) => {
+  Post.getData = (uuid, extra = {}) => new Promise(async (resolve, reject) => {
     try {
-      const post = await Post.findOne({ where: { uuid } });
+      const post = await Post.findOne({ where: { uuid }, ...extra });
       resolve(post.toJson());
     } catch (e) {
       reject(e);
     }
   });
+
+  Post.getBy = (value, by, extra = {}) => new Promise(async (resolve, reject) => {
+    try {
+      const post = await Post.findOne({ where: { [by]: value }, ...extra }) || {};
+      resolve(post.toJson());
+    } catch (e) {
+      reject(e);
+    }
+  });
+
 
   Post.createData = (params = {}, currentUser = {}) => new Promise(async (resolve, reject) => {
     try {

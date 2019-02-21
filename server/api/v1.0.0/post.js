@@ -19,8 +19,18 @@ export default {
 
   show(req, res) {
     Model.Post
-      .getData(req.params.uuid)
-      .then(post => handleSuccess(res, { post }))
+      .getBy(req.params.slug, 'slug', {
+        include: [{
+          as: 'category',
+          model: Model.Category,
+          attributes: ['title', 'slug'],
+        }, {
+          as: 'author',
+          model: Model.User,
+          attributes: ['uuid', 'firstName', 'lastName', 'displayName'],
+        }],
+      })
+      .then(payload => handleSuccess(res, { payload }))
       .catch(errors => handleFailure(res, { errors, message: errors.message }));
   },
 };

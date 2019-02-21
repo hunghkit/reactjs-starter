@@ -7,6 +7,7 @@ import AdminPost from './admin/post';
 import Category from './category';
 
 import Post from './post';
+import Config from './config';
 
 const multer  = require('multer');
 
@@ -16,12 +17,14 @@ export default (app) => {
   const authenticateRouter = express.Router();
   const unauthenticateRouter = express.Router();
 
+  unauthenticateRouter.get('/config', Config.index);
+
   unauthenticateRouter.get('/auth', Auth.index);
   unauthenticateRouter.post('/auth/signin', Auth.signin);
   unauthenticateRouter.post('/auth/signup', Auth.signup);
 
   unauthenticateRouter.get('/posts', Post.index);
-  unauthenticateRouter.get('/posts/:uuid', Post.show);
+  unauthenticateRouter.get('/posts/:slug', Post.show);
 
   authenticateRouter.get('/users', User.index);
   authenticateRouter.put('/users/:uuid', User.update);

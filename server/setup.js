@@ -8,8 +8,6 @@ import '@server/helpers/prototype';
 import Routes from '@server/routes';
 import RoutesV1 from '@server/api/v1.0.0';
 
-const cloudinary = require('cloudinary').v2;
-
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
@@ -19,10 +17,6 @@ app.prepare()
     const server = express();
     const secret = process.env.SECRET || 'CRBeL8o5JZsLOG123asd4O2312FcjqWpr';
     Routes(app, server);
-
-    if (process.env.CLOUDINARY_URL) {
-      cloudinary.config();
-    }
 
     server.use(cookieParser());
     server.use(bodyParser.json());
@@ -34,12 +28,12 @@ app.prepare()
 
     server.get('*', (req, res) => handle(req, res));
 
-    server.listen(3005, (err) => {
+    server.listen(process.env.PORT || 3000, (err) => {
       if (err) {
         throw err;
       }
 
-      console.log('> Ready on http://localhost:3000');
+      console.log(`> Ready on http://localhost:${process.env.PORT || 3000}`);
     });
   })
   .catch((ex) => {

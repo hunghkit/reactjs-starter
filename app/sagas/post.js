@@ -5,8 +5,7 @@ import * as APPPOST from 'actions/post';
 export function* onSearchRequest(action) {
   try {
     const { params = {} } = action;
-
-    const { data } = yield call(axios.get, '/api/v1.0.0/posts', { params });
+    const { data } = yield call(axios.get, '/posts', { params });
     const { success, payload, message } = data || {};
 
     if (!success) {
@@ -17,6 +16,24 @@ export function* onSearchRequest(action) {
     action.cb && (yield call(action.cb, payload));
   } catch (err) {
     yield put(APPPOST.onSearchFailure((err || '').toString()));
+    action.cb && (yield call(action.cb, null, err));
+  }
+}
+
+export function* onDetailRequest(action) {
+  try {
+    const { params = {} } = action;
+    const { data } = yield call(axios.get, `/posts/${params.slug}`);
+    const { success, payload, message } = data || {};
+
+    if (!success) {
+      throw message;
+    }
+
+    yield put(APPPOST.onDetailSuccess(payload));
+    action.cb && (yield call(action.cb, payload));
+  } catch (err) {
+    yield put(APPPOST.onDetailFailure((err || '').toString()));
     action.cb && (yield call(action.cb, null, err));
   }
 }

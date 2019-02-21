@@ -5,7 +5,7 @@ import * as LOGIN from 'actions/login';
 
 export function* onRefreshRequest(action) {
   try {
-    const { data } = yield call(axios.get, '/api/v1.0.0/auth');
+    const { data } = yield call(axios.get, '/auth');
     const { success, user, message } = data || {};
 
     if (!success) {
@@ -23,7 +23,7 @@ export function* onRefreshRequest(action) {
 
 export function* onSubmitRequest(action) {
   try {
-    const { data } = yield call(axios.post, '/api/v1.0.0/auth/signin', action);
+    const { data } = yield call(axios.post, '/auth/signin', action);
     const { success, user, message } = data || {};
 
     if (!success) {
