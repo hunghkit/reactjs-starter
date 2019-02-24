@@ -9,6 +9,12 @@ import RoutesV1 from '@server/api/v1.0.0';
 const server = express();
 const secret = process.env.SECRET || 'CRBeL8o5JZsLOG123asd4O2312FcjqWpr';
 
+server.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader("Access-Control-Allow-Headers", "Token, Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 server.use(cookieParser());
 server.use(bodyParser.json());
 server.use(methodOverride('X-HTTP-Method-Override'));

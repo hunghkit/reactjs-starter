@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'utils/axios';
 import { call, put } from 'redux-saga/effects';
 import * as APP from 'actions/app';
 

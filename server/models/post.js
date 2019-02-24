@@ -164,9 +164,6 @@ export default (sequelize, DataTypes) => {
         throw new Error('Post not found');
       }
 
-      console.log(JSON.stringify(post));
-      console.log(JSON.stringify(currentUser));
-
       if (!(currentUser.role === 'admin' || currentUser.uuid === post.authorId)) {
         throw new Error('Permission denied');
       }

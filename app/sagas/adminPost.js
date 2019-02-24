@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'utils/axios';
 import Router from 'next/router'
 import { call, put } from 'redux-saga/effects';
 import * as ADMINPOST from 'actions/adminPost';
@@ -7,7 +7,7 @@ export function* onSearchRequest(action) {
   try {
     const { params = {} } = action;
 
-    const { data } = yield call(axios.get, '/api/v1.0.0/admin/posts', { params });
+    const { data } = yield call(axios.get, '/admin/posts', { params });
     const { success, payload, message } = data || {};
 
     if (!success) {
@@ -24,7 +24,7 @@ export function* onSearchRequest(action) {
 
 export function* onCreateRequest(action) {
   try {
-    const { data } = yield call(axios.post, '/api/v1.0.0/admin/posts', action);
+    const { data } = yield call(axios.post, '/admin/posts', action);
     const { success, post, message } = data || {};
 
     if (!success) {
@@ -42,7 +42,7 @@ export function* onCreateRequest(action) {
 
 export function* onDeleteRequest(action) {
   try {
-    const { data } = yield call(axios.delete, `/api/v1.0.0/admin/posts/${action.uuid}`);
+    const { data } = yield call(axios.delete, `/admin/posts/${action.uuid}`);
     const { success, post, message } = data || {};
 
     if (!success) {

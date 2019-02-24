@@ -1,16 +1,9 @@
-import React, { Component } from 'react';
+import Router from 'next/router'
 import { idRequired } from 'helpers/isAuth';
-import App from 'components/Admin';
-import Dashboard from 'components/Dashboard';
 
-class Admin extends Component {
-  render() {
-    return (
-      <App {...this.props}>
-        <Dashboard />
-      </App>
-    );
-  }
+const Admin = () => {
+  Router.push(`/admin/posts`);
+  return null;
 }
 
 export default idRequired(Admin);

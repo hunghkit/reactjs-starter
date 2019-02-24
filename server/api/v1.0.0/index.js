@@ -4,6 +4,8 @@ import Auth from './auth';
 import User from './user';
 import Image from './image';
 import AdminPost from './admin/post';
+import AdminLayout from './admin/layout';
+import AdminSetting from './admin/setting';
 import Category from './category';
 
 import Post from './post';
@@ -33,6 +35,14 @@ export default (app) => {
   authenticateRouter.post('/admin/posts', AdminPost.create);
   authenticateRouter.put('/admin/posts/:uuid', AdminPost.update);
   authenticateRouter.delete('/admin/posts/:uuid', AdminPost.destroy);
+
+  authenticateRouter.get('/admin/settings', AdminSetting.index);
+  authenticateRouter.post('/admin/settings', AdminSetting.create);
+  authenticateRouter.put('/admin/settings/:uuid', AdminSetting.update);
+
+  authenticateRouter.get('/admin/layouts', AdminLayout.index);
+  authenticateRouter.post('/admin/layouts', AdminLayout.create);
+  authenticateRouter.put('/admin/layouts/:uuid', AdminLayout.update);
 
   authenticateRouter.get('/admin/categories', Category.index);
   authenticateRouter.post('/admin/categories', Category.create);

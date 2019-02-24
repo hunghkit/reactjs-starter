@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import LoginFrom from 'components/Form/SignIn';
@@ -6,27 +6,25 @@ import { onSubmitRequest } from 'actions/login';
 import { withRouter } from 'next/router';
 import Head from 'next/head'
 
-class Login extends Component {
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    if (nextProps.hasUser && !this.props.hasUser) {
-      this.props.router.push('/admin');
+const Login = ({ hasUser, router, ...props }) => {
+  useEffect(() => {
+    if (hasUser && router) {
+      router.push('/admin/posts');
     }
-  }
+  });
 
-  render() {
-    return (
-      <div className="login-pages">
-        <Head>
-         <title>Login page</title>
-        </Head>
-        <LoginFrom
-          message={this.props.message}
-          onSubmit={(e) => this.props.onSubmit(e.toJS())}
-        />
-      </div>
-    );
-  }
-}
+  return (
+    <div className="login-pages">
+      <Head>
+       <title>Login page</title>
+      </Head>
+      <LoginFrom
+        message={props.message}
+        onSubmit={(e) => props.onSubmit(e.toJS())}
+      />
+    </div>
+  );
+};
 
 Login.propTypes = {
   router: PropTypes.object,

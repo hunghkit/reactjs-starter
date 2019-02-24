@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'utils/axios';
 import { call, put } from 'redux-saga/effects';
 import * as ADMINCATEGORY from 'actions/adminCategory';
 
@@ -7,7 +7,7 @@ export function* onSearchRequest(action) {
     const { params = {}, mode = 'post' } = action;
     params.mode = mode;
 
-    const { data } = yield call(axios.get, '/api/v1.0.0/admin/categories', { params });
+    const { data } = yield call(axios.get, '/admin/categories', { params });
     const { success, payload, message } = data || {};
 
     if (!success) {
@@ -24,7 +24,7 @@ export function* onSearchRequest(action) {
 
 export function* onCreateRequest(action) {
   try {
-    const { data } = yield call(axios.post, '/api/v1.0.0/admin/categories', action);
+    const { data } = yield call(axios.post, '/admin/categories', action);
     const { success, category, message } = data || {};
 
     if (!success) {

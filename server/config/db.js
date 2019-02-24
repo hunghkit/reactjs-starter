@@ -32,4 +32,5 @@ module.exports = {
     use_env_variable: 'DATABASE_URL',
     DATABASE_URL: process.env.DATABASE_URL,
   },
+  extension: path.resolve(process.cwd(), 'server/helpers', 'extension.js'),
 };

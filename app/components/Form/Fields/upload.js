@@ -31,6 +31,7 @@ class newComponent extends Component {
 
       if (info.file.response && (info.file.response.image || {}.url)) {
         this.props.input.onChange(info.file.response.image.url);
+        this.props.onUploaded && this.props.onUploaded(info.file.response.image.url);
       }
     }
   };
@@ -80,6 +81,7 @@ newComponent.propTypes = {
     touched: PropTypes.bool,
   }).isRequired,
   label: PropTypes.node,
+  onUploaded: PropTypes.func,
   hasFeedback: PropTypes.bool,
 };
 

@@ -7,7 +7,6 @@
     "dev": "nodemon server",
     "be": "PORT=3005 BE=true nodemon server",
     "start": "NODE_ENV=production node server",
-    "start:dev": "API_URL=http://localhost:3005 next",
     "eslint": "say 'checking eslint' && eslint --ignore-path .gitignore app/**/*.js pages/**/*.js server/**/*.js && say 'eslint clean'"
   },
   "pre-commit": "eslint",
@@ -71,7 +70,8 @@
     "sequelize-slugify": "^0.6.1",
     "universal-cookie-express": "3.0.7",
     "uuid": "3.3.2",
-    "validator": "10.9.0"
+    "validator": "10.9.0",
+    "webpack": "^4.29.5"
   },
   "devDependencies": {
     "@antv/data-set": "^0.10.1",

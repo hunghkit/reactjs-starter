@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'utils/axios';
 import Cookie from 'js-cookie';
 import { call, put } from 'redux-saga/effects';
 import * as LOGIN from 'actions/login';

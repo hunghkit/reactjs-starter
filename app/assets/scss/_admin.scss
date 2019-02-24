@@ -13,3 +13,40 @@ input.ant-input {
 textarea.ant-input {
   border-radius: 0;
 }
+
+.header-layout-form-components {
+  .ant-row {
+    margin-bottom: 0;
+  }
+
+  .ant-upload {
+    margin: 0 !important;
+    width: 100% !important;
+  }
+}
+
+.widget {
+  padding: 10px;
+  cursor: pointer;
+
+  h3 {
+    padding-top: 0;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  .widget-content {
+
+  }
+}
+
+.sidebar-layout-form-category-components {
+  textarea {
+    min-height: 150px !important;
+  }
+}

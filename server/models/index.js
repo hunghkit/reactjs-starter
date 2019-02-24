@@ -34,3 +34,4 @@ db.Sequelize = Sequelize;
 
 export { sequelize };
 export default db;
+module.exports = db;
