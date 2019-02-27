@@ -1,21 +1,45 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Head from 'next/head';
 import Link from 'next/link';
+import Head from 'next/head';
 import { createStructuredSelector } from 'reselect';
 import * as AppSelector from 'selectors/app';
 
 class Header extends Component {
+  get socials() {
+    return ({
+      facebookURL: {
+        title: 'Facebook',
+        icon: 'facebook',
+      },
+      twitterURL: {
+        icon: 'twitter',
+        title: 'Twitter',
+      },
+      linkedInURL: {
+        icon: 'linkedin',
+        title: 'Linkedin',
+      },
+    })
+  }
+
   render() {
-    const { menus = [] } = this.props;
+    const { setting = {} } = this.props;
+    const menus = Object.values(this.props.menus);
 
     return (
       <header
         className="header-app-components"
       >
         <Head>
-          <link rel='stylesheet' id='lavander-style-css'  href='http://lavander.premiumcoding.com/lavander-lite/wp-content/themes/lavander/style.css?ver=4.7.12' type='text/css' media='all' />
+          <title>{setting.title || ''}</title>
+          <meta name="robots" content="index,follow,all" />
+          <meta name="title" content={setting.title || ''} />
+          <meta httpEquiv="content-language" content="vi" />
+          <meta name="keywords" content={setting.keywords || ''} />
+          <meta name="description" content={setting.description || ''} />
+          <link rel='stylesheet' id='lavander-style-css'  href='/public/css/template.css' type='text/css' media='all' />
         </Head>
         <div className="top-wrapper">
           <div className="top-wrapper-content">
@@ -23,18 +47,14 @@ class Header extends Component {
               <div className="widget socials">
                 <div className="widgett">
                   <div className="social_icons">
-                    <a target="_blank" href="http://twitter.com/PremiumCoding" title="Twitter"><i className="fa fa-twitter" aria-hidden="true"></i></a>
-                    <a target="_blank" href="https://www.facebook.com/PremiumCoding" title="Facebook"><i className="fa fa-facebook" aria-hidden="true"></i></a>
-                    <a target="_blank" href="https://dribbble.com/gljivec" title="Dribbble"><i className="fa fa-dribbble" aria-hidden="true"></i></a>
-                    <a target="_blank" href="https://www.flickr.com/" title="Flickr"><i className="fa fa-flickr" aria-hidden="true"></i></a>
-                    <a target="_blank" href="http://www.pinterest.com/gljivec/" title="Pinterest"><i className="fa fa-pinterest" aria-hidden="true"></i></a>
+                    {['facebookURL', 'twitterURL', 'linkedInURL'].filter((item) => setting[item]).map((item) => <a key={item} target="_blank" rel="noopener noreferrer" href={setting[item]} title={(this.socials[item] || {}).title || ''}><i className={`fa fa-${(this.socials[item] || {}).icon || ''}`} aria-hidden="true"></i></a>)}
                   </div>
                 </div>
               </div>
             </div>
             <div className="top-right">
               <div className="widget widget_search">
-                <form method="get" id="searchform" className="searchform" action="http://lavander.premiumcoding.com/lavander-lite/">
+                <form method="get" id="searchform" className="searchform" action="/">
                   <input type="text" placeholder="Search and hit enter..." name="s" id="s" /><i className="fa fa-search search-desktop" aria-hidden="true"></i>
                 </form>
               </div>
@@ -62,7 +82,7 @@ class Header extends Component {
                 <div id="logo" className="">
                   <Link href="/">
                     <a>
-                      <img src="http://lavander.premiumcoding.com/lavander-lite/wp-content/uploads/2017/05/lavander-logo@2x.png" data-rjs="3" alt="Lavander Blog theme - Just another WordPress site" width="300" height="150" />
+                      <img src={(this.props.header || {}).imageURL} data-rjs="3" />
                     </a>
                   </Link>
                 </div>
@@ -89,12 +109,15 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-  menus: PropTypes.array,
-  onLoad: PropTypes.func,
+  menus: PropTypes.object.isRequired,
+  header: PropTypes.object.isRequired,
+  setting: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
   menus: AppSelector.getMenus(),
+  header: AppSelector.getConfig('header'),
+  setting: AppSelector.getConfig('setting'),
 });
 
 export default connect(mapStateToProps)(Header);

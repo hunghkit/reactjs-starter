@@ -10,6 +10,7 @@ const init = {
   layout: {
     menus: {},
     header: {},
+    setting: {},
     sidebars: {},
   },
 }
@@ -34,6 +35,7 @@ export const onLayoutLoadingSuccess = (state, { layout = {}, mode = 'header' }) 
   if (mode === 'all') {
     const payload = layout.reduce((obj, item) => {
       switch (item.key) {
+        case 'setting_site': return ({ ...obj, setting: { ...item, ...(item.value || {}) } });
         case 'layout_site_header': return ({ ...obj, header: { ...item, ...(item.value || {}) } });
         case 'layout_site_menus': return ({ ...obj, menus: { ...(obj.menus || {}), [item.uuid]: { ...item, ...(item.value || {}) } } });
         case 'layout_site_sidebars': return ({ ...obj, sidebars: { ...(obj.sidebars || {}), [item.uuid]: { ...item, ...(item.value || {}) } } });
@@ -42,6 +44,7 @@ export const onLayoutLoadingSuccess = (state, { layout = {}, mode = 'header' }) 
     }, {
       menus: {},
       header: {},
+      setting: {},
       sidebars: {},
     })
 

@@ -5,9 +5,10 @@
   "scripts": {
     "build": "next build",
     "dev": "nodemon server",
-    "be": "PORT=3005 BE=true nodemon server",
+    "be": "PORT=3005 BE=true nodemon server --watch server/",
     "start": "NODE_ENV=production node server",
-    "eslint": "say 'checking eslint' && eslint --ignore-path .gitignore app/**/*.js pages/**/*.js server/**/*.js && say 'eslint clean'"
+    "fe": "PORT=3000 FE=true node server --watch app/ pages/ server/fe.js",
+    "eslint": "say 'checking eslint' && eslint --ignore-path .gitignore app/ pages/ server/ && say 'eslint clean'"
   },
   "pre-commit": "eslint",
   "dependencies": {
@@ -87,6 +88,7 @@
     "eslint-plugin-react": "^7.11.1",
     "extracted-loader": "^1.0.7",
     "file-loader": "^2.0.0",
+    "http-proxy-middleware": "^0.19.1",
     "less-loader": "^4.1.0",
     "loadable-components": "^2.2.3",
     "node-sass": "^4.11.0",

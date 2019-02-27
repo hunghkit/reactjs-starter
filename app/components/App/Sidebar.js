@@ -10,7 +10,7 @@ export const Sidebar = ({ sidebars }) => {
     <div
       className="sidebar-app-components sidebar"
     >
-      {sidebars.map((item, index) => (
+      {Object.values(sidebars).map((item, index) => (
         <Widget
           key={index}
           title={item.title}
@@ -24,8 +24,8 @@ export const Sidebar = ({ sidebars }) => {
 }
 
 Sidebar.propTypes = {
-  sidebars: PropTypes.array,
   onLoad: PropTypes.func,
+  sidebars: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({

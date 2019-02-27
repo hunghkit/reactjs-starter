@@ -52,11 +52,35 @@ class SettingForm extends Component {
                   <Field
                     hasFeedback
                     type="textarea"
-                    name="keyword"
+                    name="keywords"
                     disabled={submitting}
                     component={renderInput}
                     label="Site keyword"
                     placeholder="Ex: ReactJS, Redux"
+                  />
+                  <Field
+                    hasFeedback
+                    name="facebookURL"
+                    disabled={submitting}
+                    label="Facebook Link"
+                    component={renderInput}
+                    placeholder="https://facebook.com"
+                  />
+                  <Field
+                    hasFeedback
+                    name="linkedInURL"
+                    disabled={submitting}
+                    label="Linkedin Link"
+                    component={renderInput}
+                    placeholder="https://linkedin.com"
+                  />
+                  <Field
+                    hasFeedback
+                    name="twitterURL"
+                    disabled={submitting}
+                    label="Twitter Link"
+                    component={renderInput}
+                    placeholder="http://twitter.com"
                   />
                   <Field
                     hasFeedback

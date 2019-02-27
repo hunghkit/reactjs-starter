@@ -15,4 +15,4 @@ if (process.env.NODE_ENV !== 'production') {
 
 moduleAlias.addAlias('@server', __dirname);
 
-module.exports = process.env.BE ? require('./be.js') : require('./setup.js');
+module.exports = process.env.BE ? require('./be.js') : process.env.FE ? require('./fe.js') : require('./setup.js');

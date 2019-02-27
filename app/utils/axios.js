@@ -1,5 +1,5 @@
 import axios from 'axios';
 
 export default axios.create({
-  baseURL: `${process.env.API_URL || ''}/api/v1.0.0`,
+  baseURL: `${process.env.BE_API_URL || ''}/api/v1.0.0`,
 });

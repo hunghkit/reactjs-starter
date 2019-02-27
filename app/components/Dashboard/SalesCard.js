@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import { Row, Col, Card, Tabs, DatePicker } from 'antd';
 import numeral from 'numeral';

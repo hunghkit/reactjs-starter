@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Chart, Axis, Tooltip, Geom } from 'bizcharts';

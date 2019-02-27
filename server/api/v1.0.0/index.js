@@ -43,6 +43,7 @@ export default (app) => {
   authenticateRouter.get('/admin/layouts', AdminLayout.index);
   authenticateRouter.post('/admin/layouts', AdminLayout.create);
   authenticateRouter.put('/admin/layouts/:uuid', AdminLayout.update);
+  authenticateRouter.delete('/admin/layouts/:uuid', AdminLayout.delete);
 
   authenticateRouter.get('/admin/categories', Category.index);
   authenticateRouter.post('/admin/categories', Category.create);

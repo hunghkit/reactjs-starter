@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import { Row, Col, Table, Tooltip, Card, Icon } from 'antd';
 import Trend from 'components/Themes/Trend';

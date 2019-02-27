@@ -83,7 +83,7 @@ export function* onLayoutRequest(action) {
 
 export function* onLayoutRemoveRequest(action) {
   try {
-    const { data } = yield call(axios.delete, `/admin/layouts/${action.uuid}`, { params: action });
+    const { data } = yield call(axios.delete, `/admin/layouts/${action.uuid}`, { params: { mode: action.mode } });
     const { success, payload, mode = 'menus', message } = data || {};
 
     if (!success) {

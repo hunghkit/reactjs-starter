@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { Component } from 'react';
 import { Row, Col } from 'antd';
 import IntroduceRow from './IntroduceRow';

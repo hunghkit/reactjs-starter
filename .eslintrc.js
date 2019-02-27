@@ -34,6 +34,7 @@ module.exports = {
     "react/jsx-uses-react": 1,
     "import/no-unresolved": 0,
     "no-unused-expressions": 0,
+    "import/no-named-as-default": 0,
     "import/prefer-default-export": 0,
     "import/no-extraneous-dependencies": 0,
   }

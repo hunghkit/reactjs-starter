@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { PureComponent } from 'react';
 import { Chart, Tooltip, Geom } from 'bizcharts';
 import autoHeight from 'utils/autoHeight';

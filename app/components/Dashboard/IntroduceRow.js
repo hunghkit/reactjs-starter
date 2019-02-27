@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import { Icon, Row, Col, Tooltip } from 'antd';
 import numeral from 'numeral';

@@ -18,7 +18,7 @@ export default {
 
   update(req, res) {
     const setting = Object.entries(req.body.setting || {}).reduce((obj, [key, value]) => {
-      if (['title', 'keyword', 'description', 'imageURL'].includes(key)) {
+      if (['title', 'keywords', 'description', 'imageURL', 'facebookURL', 'twitterURL', 'linkedInURL'].includes(key)) {
         obj[key] = value || '';
       }
 
