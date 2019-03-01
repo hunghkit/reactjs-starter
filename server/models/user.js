@@ -105,7 +105,9 @@ export default (sequelize, DataTypes) => {
     }
   });
 
-  User.authenticate = ({ email, password }) => new Promise((resolve, reject) => {
+  User.authenticate = (params) => new Promise((resolve, reject) => {
+    const { email, password } = params || {};
+
     User.findOne({ where: { email } })
       .then((user) => {
         if (!user || !bcrypt.compareSync(password, user.password || '')) {
