@@ -78,7 +78,7 @@ export default (sequelize, DataTypes) => {
       query.include = [{
         as: 'author',
         model: Model.User,
-        attributes: ['uuid', 'firstName', 'lastName'],
+        attributes: ['uuid', 'firstName', 'lastName', 'username'],
       }];
 
       if (extra.include) {

@@ -25,44 +25,39 @@ class PostDetail extends Component {
   }
 
   render() {
-    const { uuid, content, title, author = {}, category = {}, createdAt, slug, imageURL } = this.props.post || {};
+    const { uuid, content, excerpt, title, author = {}, category = {}, createdAt, imageURL } = this.props.post || {};
 
     return (
-      <App>
+      <App
+        className="post-page"
+        header={{ title, imageURL, description: excerpt }}
+      >
         <div
           key={uuid}
-          className="detail-post-page blogpostcategory"
+          className="blogpostcategory"
         >
           <div className="topBlog">
             <div className="blog-category">
               <em>
-                <Link href={`/category/${(category || {}).slug || ''}`}>
+                <Link as={`/${process.env.CATEGORY_SLUG}/${(category || {}).slug || ''}`} href={`/category?slug=${(category || {}).slug || ''}`}>
                   <a>{(category || {}).title || ''}</a>
                 </Link>
               </em>
             </div>
             <h2 className="title">
-              <Link href={`/post/${slug || ''}`}>
-                <a>{title}</a>
-              </Link>
+              {title}
             </h2>
           </div>
-          <Link href={`/post/${slug || ''}`}>
-            <a className="overdefultlink">
-              <div className="overdefult"></div>
-            </a>
-          </Link>
+          <div className="overdefult"></div>
           <div className="blogimage">
             <div className="loading"></div>
-            <Link href={`/post/${slug || ''}`}>
-              <a rel="bookmark" title="Permanent" link="" to="" exploring="" my="" surroundings="">
-                <img width="1160" height="748" src={imageURL} className="attachment-lavander-postBlock size-lavander-postBlock wp-post-image" alt={title || ''} />
-              </a>
-            </Link>
+            <img width="1160" height="748" src={imageURL} className="attachment-lavander-postBlock size-lavander-postBlock wp-post-image" alt={title || ''} />
           </div>
           <div className="post-meta">
             <a className="post-meta-time">{moment(createdAt).format('MMMM DD, YYYY')}</a>
-            <a className="post-meta-author" href="">by {(author || {}).displayName || ''}</a>
+            <Link as={`/${process.env.AUTHOR_SLUG}/${(author || {}).username || ''}`} href={`/author?slug=${(author || {}).username || ''}`}>
+              <a className="post-meta-author">by {(author || {}).displayName || ''}</a>
+            </Link>
           </div>
           <div className="entry">
             <div className="meta">

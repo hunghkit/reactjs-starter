@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Link from 'next/link';
-import Head from 'next/head';
+import { withRouter } from 'next/router'
 import { createStructuredSelector } from 'reselect';
 import * as AppSelector from 'selectors/app';
 
 class Header extends Component {
+  input = React.createRef();
+
   get socials() {
     return ({
       facebookURL: {
@@ -24,6 +26,20 @@ class Header extends Component {
     })
   }
 
+  componentDidMount() {
+    const { query = {} } = this.props.router;
+
+    if (query.s && this.input.current) {
+      this.input.current.value = query.s;
+    }
+  }
+
+  onSearch = (e) => {
+    e.preventDefault();
+    const text = this.input.current.value;
+    this.props.router.replace(`/?s=${text}`);
+  }
+
   render() {
     const { setting = {} } = this.props;
     const menus = Object.values(this.props.menus);
@@ -32,15 +48,6 @@ class Header extends Component {
       <header
         className="header-app-components"
       >
-        <Head>
-          <title>{setting.title || ''}</title>
-          <meta name="robots" content="index,follow,all" />
-          <meta name="title" content={setting.title || ''} />
-          <meta httpEquiv="content-language" content="vi" />
-          <meta name="keywords" content={setting.keywords || ''} />
-          <meta name="description" content={setting.description || ''} />
-          <link rel='stylesheet' id='lavander-style-css'  href='/public/css/template.css' type='text/css' media='all' />
-        </Head>
         <div className="top-wrapper">
           <div className="top-wrapper-content">
             <div className="top-left">
@@ -54,8 +61,8 @@ class Header extends Component {
             </div>
             <div className="top-right">
               <div className="widget widget_search">
-                <form method="get" id="searchform" className="searchform" action="/">
-                  <input type="text" placeholder="Search and hit enter..." name="s" id="s" /><i className="fa fa-search search-desktop" aria-hidden="true"></i>
+                <form id="searchform" className="searchform" onSubmit={this.onSearch}>
+                  <input ref={this.input} type="text" placeholder="Search and hit enter..." name="s" id="s" /><i className="fa fa-search search-desktop" aria-hidden="true"></i>
                 </form>
               </div>
             </div>
@@ -110,6 +117,7 @@ class Header extends Component {
 
 Header.propTypes = {
   menus: PropTypes.object.isRequired,
+  router: PropTypes.object.isRequired,
   header: PropTypes.object.isRequired,
   setting: PropTypes.object.isRequired,
 };
@@ -120,4 +128,4 @@ const mapStateToProps = createStructuredSelector({
   setting: AppSelector.getConfig('setting'),
 });
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps)(withRouter(Header));

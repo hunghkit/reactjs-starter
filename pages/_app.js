@@ -22,10 +22,15 @@ class Page extends App {
 
   static async getInitialProps({ Component, ctx }) {
     let pageProps = {};
-
-    if (Component.getInitialProps) {
+    try {
       await new Promise((resolve) => ctx.store.dispatch(onConfigRequest(() => resolve(true))));
-      pageProps = await Component.getInitialProps(ctx);
+
+      if (Component.getInitialProps) {
+        pageProps = await Component.getInitialProps(ctx);
+      }
+    } catch (e) {
+      pageProps = {};
+      console.log('SERVER LOADING:', e);
     }
 
     return { pageProps };

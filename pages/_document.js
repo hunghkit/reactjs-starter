@@ -10,6 +10,7 @@ class AppDocument extends Document {
     return (
       <html>
         <Head>
+          <meta name="robots" content="index,follow,all" />
           <script src="https://cdn.ckeditor.com/4.10.0/full/ckeditor.js"></script>
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/antd/3.11.2/antd.min.css" />
           <link rel='stylesheet' id='ot-google-fonts-css'  href='//fonts.googleapis.com/css?family=Lora:regular,italic,700%7CKarla:regular,italic,700%7COswald:regular,500,700' type='text/css' media='all' />

@@ -33,8 +33,8 @@ export default (sequelize, DataTypes) => {
   const permitFields = ['title', 'description', 'type'];
   const publicFields = ['uuid', 'seq', 'slug',...permitFields, 'createdAt', 'updatedAt'];
 
-  Category.associate = () => {
-    // associations can be defined here
+  Category.associate = (models) => {
+    Category.hasMany(models.Post, { foreignKey: 'categoryId', as: 'posts' });
   };
 
   SequelizeSlugify.slugifyModel(Category, {

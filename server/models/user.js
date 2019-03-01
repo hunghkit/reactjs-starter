@@ -69,15 +69,19 @@ export default (sequelize, DataTypes) => {
   }, {});
 
   const requiredField = ['email', 'password', 'lastName', 'firstName'];
-  const permitFields = ['email', 'password', 'lastName', 'firstName', 'gender', 'role', 'status', 'gender', 'phone', 'displayName', 'dob', 'photoURL'];
+  const permitFields = ['email', 'password', 'lastName', 'firstName', 'gender', 'role', 'status', 'gender', 'phone', 'displayName', 'dob', 'photoURL', 'username'];
   const publicFields = ['uuid', 'seq', ...permitFields, 'createdAt', 'updatedAt'];
+
+  User.permitFields = permitFields;
 
   User.associate = (models) => {
     User.hasMany(models.Post, { foreignKey: 'authorId' });
   };
 
   User.prototype.toJson = function (extra = {}) {
-    return publicFields.reduce((obj, key) => Object.assign(obj, { [key]: this[key] }), { ...extra });
+    const user =  publicFields.reduce((obj, key) => Object.assign(obj, { [key]: this[key] }), { ...extra });
+    delete user.password;
+    return user;
   };
 
   User.getAll = (args, queryWhere = {}, currentUser = {}) => new Promise(async (resolve, reject) => {

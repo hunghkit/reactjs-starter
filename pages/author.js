@@ -7,14 +7,14 @@ import Link from 'next/link';
 import { connect } from 'react-redux';
 import App from 'components/App';
 import { createStructuredSelector } from 'reselect';
-import { onSearchRequest } from 'actions/post';
-import * as PostSelector from 'selectors/post';
+import { onDetailRequest } from 'actions/author';
+import * as PostSelector from 'selectors/author';
 
-class Page extends Component {
+class AuthorDetail extends Component {
   static getInitialProps (ctx) {
     return new Promise((resolve) => {
       if (ctx && ctx.store) {
-        ctx.store.dispatch(onSearchRequest(ctx.query || {}, () => resolve({})));
+        ctx.store.dispatch(onDetailRequest(ctx.query || {}, () => resolve({})));
       } else {
         resolve({});
       }
@@ -90,9 +90,12 @@ class Page extends Component {
   }
 
   render() {
+    const { user } = this.props;
+
     return (
       <App
-        className="index-page"
+        header={{ title: user.username }}
+        className="author-page"
       >
         {this.props.posts.map(this.renderPost)}
       </App>
@@ -100,28 +103,32 @@ class Page extends Component {
   }
 }
 
-Page.propTypes = {
+AuthorDetail.propTypes = {
   onLoad: PropTypes.func,
   posts: PropTypes.array.isRequired,
-  setting: PropTypes.object.isRequired,
+  total: PropTypes.number.isRequired,
   router: PropTypes.object.isRequired,
   isLoaded: PropTypes.bool.isRequired,
   pageSize: PropTypes.number.isRequired,
   totalPage: PropTypes.number.isRequired,
   currentPage: PropTypes.number.isRequired,
+
+  user: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
   posts: PostSelector.getPosts(),
   total: PostSelector.getCount(),
+  user: PostSelector.getInformation(),
   isLoaded: PostSelector.getLoaded(),
   pageSize: PostSelector.getPageSize(),
   totalPage: PostSelector.getTotalPage(),
   currentPage: PostSelector.getCurrentPage(),
 });
 
+
 const mapDispatchToProps = (dispatch) => ({
-  onLoad: (params, cb) => dispatch(onSearchRequest(params, cb)),
+  onLoad: (params, cb) => dispatch(onDetailRequest(params, cb)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Page));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(AuthorDetail));

@@ -26,6 +26,8 @@ export default (app) => {
   unauthenticateRouter.post('/auth/signup', Auth.signup);
 
   unauthenticateRouter.get('/posts', Post.index);
+  unauthenticateRouter.get('/posts/author/:slug', Post.author);
+  unauthenticateRouter.get('/posts/category/:slug', Post.category);
   unauthenticateRouter.get('/posts/:slug', Post.show);
 
   authenticateRouter.get('/users', User.index);

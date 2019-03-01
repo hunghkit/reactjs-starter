@@ -1,9 +1,11 @@
 import { takeLatest } from 'redux-saga/effects'
-import { LOGIN, ADMINCATEGORY, ADMINPOST, APPPOST, APP, ADMINAPP } from 'actions/constants';
+import { LOGIN, ADMINCATEGORY, ADMINPOST, APPPOST, APP, ADMINAPP, APPCATEGORY, APPAUTHOR } from 'actions/constants';
 
 import * as APPWATCHER from './app';
 import * as LOGINWATCHER from './login';
 import * as APPPOSTWATCHER from './post';
+import * as APPAUTHORWATCHER from './author';
+import * as APPCATEWATCHER from './category';
 import * as ADMINAPPWATCHER from './adminApp';
 import * as ADMINPOSTWATCHER from './adminPost';
 import * as ADMINCATEGORYWATCHER from './adminCategory';
@@ -21,6 +23,10 @@ export default function* root() {
   yield takeLatest(ADMINPOST.ADMIN_POST_SEARCH_REQUEST, ADMINPOSTWATCHER.onSearchRequest);
   yield takeLatest(ADMINPOST.ADMIN_POST_CREATE_REQUEST, ADMINPOSTWATCHER.onCreateRequest);
   yield takeLatest(ADMINPOST.ADMIN_POST_DELETE_REQUEST, ADMINPOSTWATCHER.onDeleteRequest);
+
+  yield takeLatest(APPAUTHOR.APP_AUTHOR_DETAIL_REQUEST, APPAUTHORWATCHER.onDetailRequest);
+
+  yield takeLatest(APPCATEGORY.APP_CATEGORY_DETAIL_REQUEST, APPCATEWATCHER.onDetailRequest);
 
   yield takeLatest(ADMINAPP.ADMIN_APP_LAYOUT_REQUEST, ADMINAPPWATCHER.onLayoutRequest);
   yield takeLatest(ADMINAPP.ADMIN_APP_LAYOUT_REMOVE_REQUEST, ADMINAPPWATCHER.onLayoutRemoveRequest);

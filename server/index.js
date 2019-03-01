@@ -8,7 +8,6 @@ if (process.env.CLOUDINARY_URL) {
   cloudinary.config();
 }
 
-
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config(); // eslint-disable-line
 }
